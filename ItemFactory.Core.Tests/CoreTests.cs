@@ -169,7 +169,7 @@ public class CoreTests
         Initialize(ConflictPolicy.RemoveBoth);
         Assert.DoesNotContain(TestItems.Apple, ItemRegistry.ToList());
         Assert.DoesNotContain(TestItems.AnotherApple, ItemRegistry.ToList());
-        Assert.Contains(TestItems.BananaBread, ItemRegistry.ToList()); // Both Pear and BananaBread should remain
+        Assert.Contains(TestItems.BananaBread, ItemRegistry.ToList()); 
         Assert.Contains(TestItems.Pear, ItemRegistry.ToList());
     }
     
