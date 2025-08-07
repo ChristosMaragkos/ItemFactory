@@ -41,7 +41,7 @@ public static class ItemRegistry
         }
     
         Items.TryGetValue(id, out var item);
-        return item as TItem ?? throw new InvalidCastException("Item with ID " + id + " is not of type " + typeof(TItem).Name);
+        return item as TItem ?? throw new InvalidCastException($"Item with ID {id} is not of type {typeof(TItem).Name}");
     }
     
     /// <summary>
