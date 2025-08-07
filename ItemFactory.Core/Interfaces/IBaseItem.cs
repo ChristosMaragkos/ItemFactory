@@ -7,7 +7,7 @@ public interface IBaseItem
 
     string GetId() => $"{Namespace}:{Name}";
     
-    protected AbstractItemSettings Settings { init; }
+    AbstractItemSettings Settings { init; }
 }
 
 public abstract class AbstractItemSettings{}

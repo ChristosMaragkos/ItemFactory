@@ -33,13 +33,25 @@ public static class ItemRegistry
         }
     }
     
+    public static TItem GetItemAs<TItem>(string id) where TItem : class, IBaseItem
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            throw new ArgumentException("Item ID cannot be null or empty.", nameof(id));
+        }
+    
+        Items.TryGetValue(id, out var item);
+        return item as TItem ?? throw new InvalidCastException("Item with ID " + id + " is not of type " + typeof(TItem).Name);
+    }
+    
     /// <summary>
     /// Static method to initialize the item registry.
     /// You can optionally specify a conflict policy for handling item ID conflicts for
     /// purposes such as overwriting existing items or removing both conflicting items via mods.
     /// If no policy is specified, it defaults to keeping the first item registered with that ID.
     ///
-    /// Important: Ensure that you call this method within a game initializer before any items are registered.
+    /// Important: Ensure that you call this method within a
+    /// game initializer before any items are registered.
     /// </summary>
     /// <param name="conflictPolicy">The item ID conflict handling policy.
     /// Keeps the first item by default</param>

@@ -135,3 +135,4 @@ C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core.Tests\obj\Debug\net9.0
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core.Tests\obj\Debug\net9.0\ItemFactory.Core.Tests.pdb
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core.Tests\obj\Debug\net9.0\ItemFactory.Core.Tests.genruntimeconfig.cache
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core.Tests\obj\Debug\net9.0\ref\ItemFactory.Core.Tests.dll
+C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core.Tests\obj\Debug\net9.0\ItemFactory.Core.Tests.sourcelink.json

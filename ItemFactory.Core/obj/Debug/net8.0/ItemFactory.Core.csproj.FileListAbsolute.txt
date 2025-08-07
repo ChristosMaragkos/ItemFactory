@@ -9,3 +9,4 @@ C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core\obj\Debug\net8.0\ItemF
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core\obj\Debug\net8.0\refint\ItemFactory.Core.dll
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core\obj\Debug\net8.0\ItemFactory.Core.pdb
 C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core\obj\Debug\net8.0\ref\ItemFactory.Core.dll
+C:\Users\chris\RiderProjects\ItemFactory\ItemFactory.Core\obj\Debug\net8.0\ItemFactory.Core.sourcelink.json
