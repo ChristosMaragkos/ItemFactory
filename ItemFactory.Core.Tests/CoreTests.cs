@@ -210,6 +210,16 @@ public class CoreTests
         Assert.Throws<InvalidCastException>(() =>
             ItemRegistry.GetItemAs<FoodItem>("test:pear"));
     }
+    
+    [Fact]
+    public void ItemRegistryGet_ShouldNotThrow_OnProperCast()
+    {
+        Initialize();
+
+        var item = ItemRegistry.GetItemAs<FoodItem>("test:banana_bread");
+        Assert.NotNull(item);
+        Assert.IsType<FoodItem>(item);
+    }
 
     [Fact]
     public void ItemRegistryGet_ShouldThrowArgumentException_WhenIdIsNullOrEmpty()
