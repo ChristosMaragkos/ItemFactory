@@ -1,74 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ItemFactory.Core.Interfaces;
 
-namespace ItemFactory.Core.Loading;
-
-public static class ItemRegistry
+namespace ItemFactory.Core.Loading
 {
-    private static readonly Dictionary<string, IBaseItem> Items = new();
-    
-    private static ConflictPolicy _conflictPolicy = ConflictPolicy.KeepExisting;
-
-    public static TItem? Register<TItem>(TItem item)
-    where TItem : class, IBaseItem
+    public static class ItemRegistry
     {
-        var id = item.GetId();
-        if (string.IsNullOrWhiteSpace(id))
+        private static readonly Dictionary<string, IBaseItem> Items = new Dictionary<string, IBaseItem>();
+    
+        private static ConflictPolicy _conflictPolicy = ConflictPolicy.KeepExisting;
+
+        public static TItem? Register<TItem>(TItem item)
+            where TItem : class, IBaseItem
         {
-            throw new ArgumentException("Item ID cannot be null or empty.", item.Name);
-        }
+            var id = item.GetId();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentException("Item ID cannot be null or empty.", item.Name);
+            }
         
-        if (Items.TryAdd(id, item)) return item;
-        switch (_conflictPolicy)
-        {
-            case ConflictPolicy.KeepExisting:
-                return Items[id] as TItem;
-            case ConflictPolicy.Overwrite:
-                Items[id] = item;
-                return item;
-            case ConflictPolicy.RemoveBoth:
-                Items.Remove(id);
-                return null;
-            default:
-                throw new ArgumentOutOfRangeException(_conflictPolicy.ToString());
-        }
-    }
-    
-    public static TItem GetItemAs<TItem>(string id) where TItem : class, IBaseItem
-    {
-        if (string.IsNullOrWhiteSpace(id))
-        {
-            throw new ArgumentException("Item ID cannot be null or empty.", nameof(id));
+            if (Items.TryAdd(id, item)) return item;
+            switch (_conflictPolicy)
+            {
+                case ConflictPolicy.KeepExisting:
+                    return Items[id] as TItem;
+                case ConflictPolicy.Overwrite:
+                    Items[id] = item;
+                    return item;
+                case ConflictPolicy.RemoveBoth:
+                    Items.Remove(id);
+                    return null;
+                default:
+                    throw new ArgumentOutOfRangeException(_conflictPolicy.ToString());
+            }
         }
     
-        Items.TryGetValue(id, out var item);
-        return item as TItem ?? throw new InvalidCastException($"Item with ID {id} is not of type {typeof(TItem).Name}");
-    }
+        public static TItem GetItemAs<TItem>(string id) where TItem : class, IBaseItem
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentException("Item ID cannot be null or empty.", nameof(id));
+            }
     
-    /// <summary>
-    /// Static method to initialize the item registry.
-    /// You can optionally specify a conflict policy for handling item ID conflicts for
-    /// purposes such as overwriting existing items or removing both conflicting items via mods.
-    /// If no policy is specified, it defaults to keeping the first item registered with that ID.
-    ///
-    /// Important: Ensure that you call this method within a
-    /// game initializer before any items are registered.
-    /// </summary>
-    /// <param name="conflictPolicy">The item ID conflict handling policy.
-    /// Keeps the first item by default</param>
-    public static void Initialize(ConflictPolicy conflictPolicy = ConflictPolicy.KeepExisting)
-    {
-        _conflictPolicy = conflictPolicy;
-    }
+            Items.TryGetValue(id, out var item);
+            return item as TItem ?? throw new InvalidCastException($"Item with ID {id} is not of type {typeof(TItem).Name}");
+        }
     
-    #if DEBUG
-    public static void Clear()
-    {
-        Items.Clear();
-    }
+        /// <summary>
+        /// Static method to initialize the item registry.
+        /// You can optionally specify a conflict policy for handling item ID conflicts for
+        /// purposes such as overwriting existing items or removing both conflicting items via mods.
+        /// If no policy is specified, it defaults to keeping the first item registered with that ID.
+        ///
+        /// Important: Ensure that you call this method within a
+        /// game initializer before any items are registered.
+        /// </summary>
+        /// <param name="conflictPolicy">The item ID conflict handling policy.
+        /// Keeps the first item by default</param>
+        public static void Initialize(ConflictPolicy conflictPolicy = ConflictPolicy.KeepExisting)
+        {
+            _conflictPolicy = conflictPolicy;
+        }
+    
+#if DEBUG
+        public static void Clear()
+        {
+            Items.Clear();
+        }
 
-    public static List<IBaseItem> ToList()
-    {
-        return Items.Values.ToList();
+        public static List<IBaseItem> ToList()
+        {
+            return Items.Values.ToList();
+        }
+#endif
     }
-    #endif
 }

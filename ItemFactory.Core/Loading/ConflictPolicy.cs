@@ -1,8 +1,9 @@
-namespace ItemFactory.Core.Loading;
-
-public enum ConflictPolicy
+namespace ItemFactory.Core.Loading
 {
-    KeepExisting,
-    Overwrite,
-    RemoveBoth
+    public enum ConflictPolicy
+    {
+        KeepExisting,
+        Overwrite,
+        RemoveBoth
+    }
 }

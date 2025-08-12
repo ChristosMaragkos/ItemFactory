@@ -1,9 +1,10 @@
-﻿namespace ItemFactory.Core.Interfaces;
-
-public interface IBaseItem
+﻿namespace ItemFactory.Core.Interfaces
 {
-    string Name { get; }
-    string Namespace { get; }
+    public interface IBaseItem
+    {
+        string Name { get; }
+        string Namespace { get; }
 
-    string GetId() => $"{Namespace}:{Name}";
+        string GetId() => $"{Namespace}:{Name}";
+    }
 }
