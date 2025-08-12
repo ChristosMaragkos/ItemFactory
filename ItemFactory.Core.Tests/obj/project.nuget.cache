@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CLTWC/cfy5U=",
+  "dgSpecHash": "/TwMPfxyx+w=",
   "success": true,
   "projectFilePath": "C:\\Users\\chris\\RiderProjects\\ItemFactory\\ItemFactory.Core.Tests\\ItemFactory.Core.Tests.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,11 @@
     "C:\\Users\\chris\\.nuget\\packages\\xunit.v3.core\\3.0.0\\xunit.v3.core.3.0.0.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\xunit.v3.extensibility.core\\3.0.0\\xunit.v3.extensibility.core.3.0.0.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\xunit.v3.runner.common\\3.0.0\\xunit.v3.runner.common.3.0.0.nupkg.sha512",
-    "C:\\Users\\chris\\.nuget\\packages\\xunit.v3.runner.inproc.console\\3.0.0\\xunit.v3.runner.inproc.console.3.0.0.nupkg.sha512"
+    "C:\\Users\\chris\\.nuget\\packages\\xunit.v3.runner.inproc.console\\3.0.0\\xunit.v3.runner.inproc.console.3.0.0.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.18\\microsoft.netcore.app.ref.8.0.18.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.18\\microsoft.windowsdesktop.app.ref.8.0.18.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.18\\microsoft.aspnetcore.app.ref.8.0.18.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.18\\microsoft.netcore.app.host.win-x64.8.0.18.nupkg.sha512"
   ],
   "logs": []
 }
