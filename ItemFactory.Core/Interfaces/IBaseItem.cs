@@ -6,8 +6,4 @@ public interface IBaseItem
     string Namespace { get; }
 
     string GetId() => $"{Namespace}:{Name}";
-    
-    AbstractItemSettings Settings { init; }
 }
-
-public abstract class AbstractItemSettings{}

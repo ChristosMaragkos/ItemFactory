@@ -10,7 +10,7 @@ namespace ItemFactory.Core.Tests;
 public class CoreTests
 {
 
-    private class TestItemSettings : AbstractItemSettings
+    private class TestItemSettings
     {
         private int _maxStackSize = 99;
         private bool _isFlammable;
@@ -37,9 +37,9 @@ public class CoreTests
     {
         public string Name { get; }
         public string Namespace { get; }
-        public AbstractItemSettings Settings { private get; init; }
+        private TestItemSettings Settings { get; }
         
-        public TestItem(string @namespace, string name, AbstractItemSettings settings)
+        public TestItem(string @namespace, string name, TestItemSettings settings)
         {
             Name = name;
             Namespace = @namespace;
@@ -48,7 +48,7 @@ public class CoreTests
 
         private TestItemSettings GetSettings()
         {
-            return Settings as TestItemSettings;
+            return Settings;
         }
         
         public int GetMaxStackSize()
@@ -65,7 +65,7 @@ public class CoreTests
     private class FoodItem : TestItem
     {
         
-        public FoodItem(string @namespace, string name, AbstractItemSettings settings)
+        public FoodItem(string @namespace, string name, TestItemSettings settings)
             : base(@namespace, name, settings)
         {
         }
