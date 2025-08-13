@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\chris\\RiderProjects\\ItemFactory\\ItemFactory.Core\\ItemFactory.Core.csproj",
-        "projectName": "ItemFactory.Core",
+        "projectName": "ItemFactory",
         "projectPath": "C:\\Users\\chris\\RiderProjects\\ItemFactory\\ItemFactory.Core\\ItemFactory.Core.csproj",
         "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\chris\\RiderProjects\\ItemFactory\\ItemFactory.Core\\obj\\",
