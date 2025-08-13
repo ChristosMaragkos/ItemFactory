@@ -21,11 +21,11 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Build (exclude tests)
+        run: dotnet build ItemFactory.Core/ItemFactory.Core.csproj --configuration Release --no-restore
 
-      - name: Pack
-        run: dotnet pack --configuration Release --no-build --output ./nupkg
+      - name: Pack (core project only)
+        run: dotnet pack ItemFactory.Core/ItemFactory.Core.csproj --configuration Release --no-build --output ./nupkg
 
       - name: Publish to NuGet.org
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
