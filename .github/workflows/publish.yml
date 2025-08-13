@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       PROJECT_PATH: src/ItemFactory.Core/ItemFactory.Core.csproj
     steps:
