@@ -3,37 +3,36 @@ name: Publish Core package
 on:
   push:
     tags:
-      - 'v*.*.*'
-
-permissions:
-  contents: read
+      - 'v*'
 
 jobs:
-  publish:
-    runs-on: windows-latest
-    env:
-      PROJECT_PATH: src/ItemFactory.Core/ItemFactory.Core.csproj
+  build-pack-publish:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET (8 SDK builds both net8.0 and netstandard2.1)
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore
-        run: dotnet restore ${{ env.PROJECT_PATH }}
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
 
       - name: Pack
-        shell: pwsh
-        run: |
-          $version = "${env:GITHUB_REF_NAME}".TrimStart('v')
-          Write-Host "Packing version $version"
-          dotnet pack $env:PROJECT_PATH -c Release -p:PackageVersion=$version -p:ContinuousIntegrationBuild=true -o out
+        run: dotnet pack --configuration Release --no-build --output ./nupkg
 
-      - name: Show artifacts
-        run: dir out
+      - name: Publish to NuGet.org
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-      - name: Publish to NuGet
-        run: dotnet nuget push "out/*.nupkg" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: Upload NuGet package to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./nupkg/*.nupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
