@@ -6,8 +6,7 @@
         
         <Author>Christos Maragkos</Author>
         <PackageId>ItemFactory</PackageId>
-        <Description>ItemFactory is a library for 
-            creating and managing items in a game or application.</Description>
+        <Description>ItemFactory is a library for creating and managing items in a game or application.</Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
