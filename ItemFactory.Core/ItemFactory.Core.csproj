@@ -4,6 +4,12 @@
         <TargetFrameworks>net8.0; netstandard2.1</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        
+        <Author>Christos Maragkos</Author>
+        <PackageId>ItemFactory</PackageId>
+        <Description>ItemFactory is a library for 
+            creating and managing items in a game or application.</Description>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
 </Project>

@@ -1,0 +1,39 @@
+name: Publish Core package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_PATH: src/ItemFactory.Core/ItemFactory.Core.csproj
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET (8 SDK builds both net8.0 and netstandard2.1)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore $env:PROJECT_PATH
+
+      - name: Pack
+        shell: pwsh
+        run: |
+          $version = "${env:GITHUB_REF_NAME}".TrimStart('v')
+          Write-Host "Packing version $version"
+          dotnet pack $env:PROJECT_PATH -c Release -p:PackageVersion=$version -p:ContinuousIntegrationBuild=true -o out
+
+      - name: Show artifacts
+        run: dir out
+
+      - name: Publish to NuGet
+        run: dotnet nuget push "out/*.nupkg" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
